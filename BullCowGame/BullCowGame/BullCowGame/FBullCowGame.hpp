@@ -6,6 +6,8 @@
 //  Copyright © 2018 Colleen Cleary. All rights reserved.
 //
 
+#pragma once
+
 #ifndef FBullCowGame_hpp
 #define FBullCowGame_hpp
 
@@ -13,6 +15,7 @@
 #include <string>
 #endif /* FBullCowGame_hpp */
 
+// to make syntax Unreal friendly
 using FString = std::string;
 using int32 = int;
 
@@ -44,18 +47,20 @@ public:
     int32 GetMaxTries() const;
     int32 GetCurrentTry() const;
     int32 GetHiddenWordLength() const;
-    
     bool IsGameWon() const;
-    EGuessStatus CheckGuessValidity(FString) const; // TODO make a more rich return value
+    EGuessStatus CheckGuessValidity(FString) const;
     
-    void Reset(); // TODO make a more rich return value
+    void Reset();
     
     // counts bulls and cows and increases try # assuming valid guess
-    FBullCowCount SubmitGuess(FString);
+    FBullCowCount SubmitValidGuess(FString);
     
-// ignore this for now
 private:
     int32 MyCurrentTry;
     int32 MyMaxTries;
     FString MyHiddenWord;
+    bool bGameIsWon;
+    
+    bool IsIsogram(FString) const;
+    bool IsLowercase(FString) const;
 };
